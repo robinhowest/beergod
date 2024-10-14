@@ -1,0 +1,131 @@
+tbody {
+  display: grid;
+  width: 100%;    
+}
+
+tbody td {
+  display: flex;  
+  width: 110px;
+  justify-content: left;
+  align-items: center;
+  gap: 5rem;
+  color: #ffffff;
+}
+
+tbody tr {
+  border-bottom: 3px solid #eee;
+  &:last-child {
+    border: 0;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;  
+  margin: 20px;    
+}
+
+thead {
+  display: flex;
+  border-bottom: 3px solid #eee;  
+}  
+
+thead tr {
+  display: grid;  
+  gap: 5.5rem;
+  margin-left: 18px;
+  grid-template-columns: 110px 55px 75px 15px;
+}
+
+thead  th {   
+  text-align: left;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  color: #ffffff;   
+}
+
+.titledefalt {
+  display: flex;
+  justify-content: center;
+  margin: 4rem;
+  
+}
+
+.content {
+  display: flex;
+}
+ 
+td img {
+  width: 120px;
+  
+} 
+
+section {
+  flex: 1;  
+}
+
+aside {
+  min-width: 250px;
+}
+
+.qty {
+  background: black;
+  display: inline-flex;
+  padding: 0 0;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 30px;
+
+  span {
+    margin: 0 10px;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    padding: 0 10px;
+    font-size: 20px;
+    height: 100%;    
+
+    &:hover {
+      background: #181717;
+    }
+  }
+}
+
+.remove {
+  padding: 10px;
+  width: 50px;
+  color: white;
+  background: #dc3545;
+  border-radius: 15px;
+  height: auto;
+  &:hover {
+    background: #ed162c;
+  }
+    cursor: pointer;
+  
+  svg {
+    width: 17px;
+    height: 17px;
+    
+  }
+}
+
+tbody h2 {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  margin: 10rem;
+  color: #ffffff;
+  height: 10%;
+}
+
+

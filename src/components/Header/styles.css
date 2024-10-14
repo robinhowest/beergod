@@ -1,0 +1,22 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #292727;    
+}
+
+#header h2 a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: aliceblue;
+    width: 100px;
+    height: 40px;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+}
+
