@@ -7,7 +7,7 @@ export const Header = ({ children }) => {
       <h2>
         <button onClick={() => location.reload()}>
         <Link to='/'>
-          <img className="logo-img" src="../img/beegod.jpeg"/>          
+          <img className="logo-img" src="../beegod.jpeg"/>          
         </Link> 
         </button>        
       </h2>         
