@@ -56,3 +56,32 @@ img {
     align-items: center;
     margin: auto;
 }
+
+.messenger-search {
+    color: #fff;
+    margin: auto;
+    font-size: x-large;
+    padding-top: 100px;
+}
+
+.search-not {
+    margin: auto;
+}
+
+.button-return {   
+    padding: 70px; 
+    display: grid;
+    width: 50%;
+    padding: 4px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 30px auto;
+}
+
+.button-return:hover {
+    background-color: #23c82e;
+}

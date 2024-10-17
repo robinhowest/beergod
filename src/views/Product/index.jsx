@@ -3,13 +3,16 @@ import "./styles.css";
 import { AppContext } from "../../Context/AppContext";
   
 export const Product = () => {  
+
+  const { cart, setCart, searchQuery } = useContext(AppContext);
+
   const products = [
     {
       id: 1,
       name: "Placa Mãe MSI B560M-A PRO",
       price: 498.00,
       description: "Placa Mãe MSI B560M-A PRO, Intel LGA 1200, Intel B560, mATX, DDR4",
-      image: "../../img/produtos/imagem1.jpg",
+      image: "../../imagem1.jpg",
       quantity: 1,
     },
     {
@@ -78,50 +81,60 @@ export const Product = () => {
     }  
   ]   
   
-  const {cart, setCart} = useContext(AppContext);
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const addToCart = (product) => {
-    const existingIndex = cart.findIndex((item) => item.id === product.id);
+    setCart((prevCart) => {
+      const existingIndex = prevCart.findIndex((item) => item.id === product.id);
   
-    if (existingIndex !== -1) {
-      const updatedCart = cart.map((item, index) => {
-        if (index === existingIndex) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
-      setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-    } else {
-      const updatedCart = [...cart, product];
-      setCart(updatedCart);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-    }
-  };    
-    
-  return(
-    <div className="container">
-      {products.map((product) => (
-        <div className="container-div" key={product.id}>
-          <img src={product.image} alt="" />
-          <h2>
-            {new Intl.NumberFormat('pt-BR', { 
-              style: 'currency', 
-              currency: 'BRL' 
-            }).format(product.price)}
-          </h2>
-          <div>
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-          </div>
+      if (existingIndex !== -1) {
+        const updatedCart = prevCart.map((item, index) => 
+          index === existingIndex ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        return updatedCart;
+      } else {
+        const updatedCart = [...prevCart, product];
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        return updatedCart;
+      }
+    });
+  };
           
-          <div className="button-div">
-            <button className="button-product" type="button" onClick={() => addToCart(product)}>
-              Adicionar ao Carrinho              
-            </button>
+  return (
+    <div className="container">      
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => (
+          <div className="container-div" key={product.id}>
+            <img src={product.image} alt="" />
+            <h2>
+              {new Intl.NumberFormat('pt-BR', { 
+                style: 'currency', 
+                currency: 'BRL' 
+              }).format(product.price)}
+            </h2>
+            <div>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+            </div>
+
+            <div className="button-div">
+              <button className="button-product" type="button" onClick={() => addToCart(product)}>
+                Adicionar ao Carrinho              
+              </button>
+            </div>
           </div>
+        ))
+      ) : (
+        <div className="search-not">
+          <p className="messenger-search">Nenhum produto encontrado</p>
+          <button className="button-return" onClick={() => location.reload()} >Retornar</button>
         </div>
-        ))}                                            
-    </div>    
-  )  
-}      
+      )}
+      
+    </div>
+  );
+};
