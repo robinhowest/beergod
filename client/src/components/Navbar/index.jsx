@@ -8,6 +8,13 @@ import { AppContext } from "../../Context/AppContext"
 
 
 export const Navbar =() => {
+
+  const [ active, setActive ] = useState("wraper");
+
+  const mobileMenu = () => {
+    active === 'wraper' ? setActive('wraper wraperActive') : setActive('wraper');
+  }
+
   const { cart, setSearchQuery } = useContext(AppContext);
 
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
@@ -26,7 +33,7 @@ export const Navbar =() => {
   
 
   return (
-    <nav>
+    <nav className="nav">
       <Header>
         <div className="search-div">
           <input 
@@ -40,8 +47,8 @@ export const Navbar =() => {
           <button title="Buscar Produto" onClick={handleSearch}>
               <i><BiSearch/></i>
           </button>
-        </div>
-        <div className="wraper">             
+        </div>        
+        <div className={active}>             
           <Link to='/cadastro'>Quero me cadastrar</Link>       
           <Link to='/login'>Login</Link>   
           <div className="cart">
@@ -51,7 +58,12 @@ export const Navbar =() => {
                 <span className="cart-quantity">{totalItemsInCart}</span>
               )}
             </Link>
-          </div>
+          </div>          
+        </div>
+        <div onClick={mobileMenu} className="mobile-menu">
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="line3"></div>
         </div>
       </Header>       
     </nav>

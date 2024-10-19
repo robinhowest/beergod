@@ -87,3 +87,49 @@ input::placeholder {
     opacity: 0.7; /* Transparência do placeholder */
 }
 
+.mobile-menu div {
+    width: 2.5rem;
+    height: 0.2rem;
+    margin: 0.2rem;
+    background: #ffffff;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+      
+@media screen and (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+
+    .wraper {
+        position: fixed;
+        top: 7vh;
+        right: 0;
+        width: 30%;
+        height: 93vh;
+        background: #1a1919;
+        flex-direction: column;
+        transform: translateX(100%);
+        border-radius: 10px;
+        align-items: center;
+        margin: auto;
+    }
+        
+}
+
+@media screen and (min-width: 480px) {
+        
+}
+
+.wraperActive {
+    transform: translateX(0%);
+}
+
+/*
+nav toggle = mobile=menu
+nav_menu = wraper
+
+*/
