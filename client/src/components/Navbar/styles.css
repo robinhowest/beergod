@@ -120,9 +120,25 @@ input::placeholder {
         
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 768px) {
+    i {display: none;}
         
 }
+
+@media screen and (max-width: 480px) {
+    i {display: none;}
+    .search-div {
+        width: 60%;
+        padding-left: 0px;
+    }
+    button {
+        height: 100%;
+        width: 100%;
+    }
+        
+}
+
+
 
 .wraperActive {
     transform: translateX(0%);
