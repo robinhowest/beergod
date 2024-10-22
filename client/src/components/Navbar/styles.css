@@ -108,7 +108,7 @@ input::placeholder {
         position: fixed;
         top: 7vh;
         right: 0;
-        width: 30%;
+        width: 50%;
         height: 93vh;
         background: #1a1919;
         flex-direction: column;
@@ -117,13 +117,16 @@ input::placeholder {
         align-items: center;
         margin: auto;
     }
+
+    i {
+        display: none;
+    }
+    .wraperActive {
+        padding: 0PX;
+    }
         
 }
 
-@media screen and (max-width: 768px) {
-    i {display: none;}
-        
-}
 
 @media screen and (max-width: 480px) {
     i {display: none;}
@@ -134,6 +137,10 @@ input::placeholder {
     button {
         height: 100%;
         width: 100%;
+    }
+
+    .wraperActive {
+        padding: 0PX;
     }
         
 }
