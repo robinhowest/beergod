@@ -108,8 +108,8 @@ input::placeholder {
         position: fixed;
         top: 7vh;
         right: 0;
-        width: 50%;
-        height: 93vh;
+        width: 39%;
+        height: 16vh;
         background: #1a1919;
         flex-direction: column;
         transform: translateX(100%);
@@ -132,8 +132,12 @@ input::placeholder {
     i {display: none;}
     .search-div {
         width: 60%;
-        padding-left: 0px;
+        padding-left: 15px;
     }
+.search {
+    width: 200px;
+}
+
     button {
         height: 100%;
         width: 100%;
