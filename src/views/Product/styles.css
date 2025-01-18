@@ -68,11 +68,21 @@ img {
     margin: auto;
     font-size: x-large;
     padding-top: 100px;
+    justify-content: center;
 }
 
 .search-not {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    text-align: center; /* Alinha o texto ao centro */
+    position: absolute; /* Permite posicionar o elemento no centro */
+    top: 30%; /* Move para o centro vertical */
+    left: 50%; /* Move para o centro horizontal */
+    transform: translate(-50%, -50%); /* Ajusta a posição para centralizar */
 }
+
 
 .button-return {   
     

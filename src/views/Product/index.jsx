@@ -4,7 +4,7 @@ import { AppContext } from "../../Context/AppContext";
   
 export const Product = () => {  
 
-  const { cart, setCart, searchQuery } = useContext(AppContext);
+  const { setCart, searchQuery, setSearchQuery, setSearchTerm } = useContext(AppContext);
 
   const products = [
     {
@@ -79,12 +79,24 @@ export const Product = () => {
       image: "../../produtos/imagem10.jpg",
       quantity: 1,
     }  
-  ]   
+  ]
   
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredProducts = products.filter(product => {
+    const normalizedSearchQuery = searchQuery
+      .normalize('NFD')  // Normaliza para uma forma canônica de decomposição
+      .replace(/[\u0300-\u036f]/g, ''); // Remove os diacríticos (acentos, til, etc.)
+  
+    const normalizedProductName = product.name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  
+    const normalizedProductDescription = product.description
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  
+    return normalizedProductName.toLowerCase().includes(normalizedSearchQuery.toLowerCase()) ||
+      normalizedProductDescription.toLowerCase().includes(normalizedSearchQuery.toLowerCase());
+  });
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -103,6 +115,10 @@ export const Product = () => {
       }
     });
   };
+  
+  const clearSearch = () => {
+    setSearchQuery(''); 
+  };  
           
   return (
     <div className="container">      
@@ -131,10 +147,9 @@ export const Product = () => {
       ) : (
         <div className="search-not">
           <p className="messenger-search">Nenhum produto encontrado</p>
-          <button className="button-return" onClick={() => location.reload()} >Retornar</button>
+          <button className="button-return" onClick={clearSearch} >Retornar</button>
         </div>
-      )}
-      
+      )}      
     </div>
   );
 };

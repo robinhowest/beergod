@@ -89,7 +89,7 @@ input::placeholder {
 
 .mobile-menu div {
     width: 2.5rem;
-    height: 0.2rem;
+    height: 0.5rem;
     margin: 0.2rem;
     background: #ffffff;
 }
@@ -134,9 +134,15 @@ input::placeholder {
         width: 60%;
         padding-left: 15px;
     }
-.search {
-    width: 200px;
-}
+
+    .search-lupa {
+        display: none;
+    }
+    .search {
+        width: 200px;
+        height: 4.2vh;
+        margin-right: 17px;
+    }
 
     button {
         height: 100%;

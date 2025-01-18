@@ -5,8 +5,6 @@ import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { AppContext } from "../../Context/AppContext"
 
-
-
 export const Navbar =() => {
 
   const [ active, setActive ] = useState("wraper");
@@ -15,22 +13,23 @@ export const Navbar =() => {
     active === 'wraper' ? setActive('wraper wraperActive') : setActive('wraper');
   }
 
-  const { cart, setSearchQuery } = useContext(AppContext);
+  const { cart, setSearchQuery, searchQuery } = useContext(AppContext);
 
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
-  const [ searchTerm, setSearchTerm ] = useState('');
+  const [ searchTerm ] = useState('');
 
   const handleSearch = () => {
-    setSearchQuery(searchTerm);
-  } 
-
+    const normalizedSearchTerm = searchTerm
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');  // Remove acentos e diacríticos   
+  };
+  
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
-  };
-  
+  };  
 
   return (
     <nav className="nav">
@@ -40,11 +39,11 @@ export const Navbar =() => {
             className="search" 
             type="text" 
             placeholder="Pesquisar"  
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleKeyDown}
           /> 
-          <button title="Buscar Produto" onClick={handleSearch}>
+          <button className="search-lupa" title="Buscar Produto" onClick={handleSearch}>
               <i><BiSearch/></i>
           </button>
         </div>        
