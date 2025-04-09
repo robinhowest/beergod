@@ -63,3 +63,11 @@ span {
     color: #ffffff;
 }
 
+a {
+    color: red;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ff4d4d;
+  }

@@ -1,9 +1,10 @@
 import { BiCart, BiSearch } from "react-icons/bi"
 import './styles.css'
 import { Header } from "../Header"
-import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../Context/AppContext"
+import { FaUserCircle } from "react-icons/fa"
 
 export const Navbar =() => {
 
@@ -12,12 +13,27 @@ export const Navbar =() => {
   const mobileMenu = () => {
     active === 'wraper' ? setActive('wraper wraperActive') : setActive('wraper');
   }
-
+  const navigate = useNavigate();
   const { cart, setSearchQuery, searchQuery } = useContext(AppContext);
+  const [userName, setUserName] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
 
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
   const [ searchTerm ] = useState('');
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.firstName) {
+      setUserName(user.firstName);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUserName("");
+    navigate("/");
+  };
 
   const handleSearch = () => {
     const normalizedSearchTerm = searchTerm
@@ -47,9 +63,26 @@ export const Navbar =() => {
               <i><BiSearch/></i>
           </button>
         </div>        
-        <div className={active}>             
-          <Link to='/cadastro'>Quero me cadastrar</Link>       
-          <Link to='/login'>Login</Link>   
+        <div className={active}>
+          {!userName ? (
+            <>
+              <Link to='/cadastro'>Quero me cadastrar</Link>
+              <Link to='/login'>Login</Link>
+            </>
+          ) : (
+            <div className="user-menu">
+              <div className="user-icon" onClick={() => setShowMenu(!showMenu)}>
+                <FaUserCircle size={28} />
+                <span>{userName}</span>
+              </div>
+              {showMenu && (
+                <div className="dropdown-menu">
+                  <button onClick={() => navigate("/perfil")}>Alterar dados</button>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              )}
+            </div>
+          )}   
           <div className="cart">
             <Link to='/carrinho'>
               <BiCart/>

@@ -72,6 +72,10 @@ button {
     font-size: 19px;
     cursor: pointer; 
  }
+
+.user-icon {
+    color: #ffffff;
+}
  
 .search-div {
     display: flex;

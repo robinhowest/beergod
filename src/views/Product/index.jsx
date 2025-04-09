@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./styles.css";
 import { AppContext } from "../../Context/AppContext";
   
 export const Product = () => {  
 
-  const { setCart, searchQuery, setSearchQuery, setSearchTerm } = useContext(AppContext);
+  const { setCart, searchQuery, setSearchQuery } = useContext(AppContext);
 
   const products = [
     {

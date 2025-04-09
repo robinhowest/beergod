@@ -5,6 +5,7 @@ import { Login } from "./components/Login"
 import { DefaltLayout } from "./layout/DefaltLayout"
 import { Cart } from "./components/Carrinho"
 import { History } from "./components/History"
+import { CadastrarProd } from "./views/CadastrarProd"
 
 export function Router () {
   return(
@@ -15,7 +16,8 @@ export function Router () {
       <Route path="/cadastro" element={<Cadastro/>}/> 
       <Route path="/carrinho" element={<Cart/>}/> 
       <Route path="/produto" element={<Product/>}/> 
-      <Route path="/checkout" element={<History/>}/>             
+      <Route path="/checkout" element={<History/>}/> 
+      <Route path="/cadastrarProd" element={<CadastrarProd/>}/>             
     </Routes>
   )
 }
