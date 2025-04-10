@@ -164,4 +164,7 @@ mongoose
     .connect(`mongodb+srv://${dbUser}:${dbPassword}@cluster0.fdtwo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
     .then(() => console.log('conectou com o banco'))
     .catch((err) => console.log(err))
-app.listen(3000)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+});
