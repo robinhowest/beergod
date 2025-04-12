@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "node src/Api/Api.cjs"
+    "start": "nodemon src/Api/Api.cjs"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const port = process.env.PORT || 3000;
  
 const app = express() 
 
@@ -164,7 +165,6 @@ mongoose
     .connect(`mongodb+srv://${dbUser}:${dbPassword}@cluster0.fdtwo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
     .then(() => console.log('conectou com o banco'))
     .catch((err) => console.log(err))
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+app.listen(port, () => {
+  console.log(`🚀 Servidor rodando na porta ${port}`);
 });
