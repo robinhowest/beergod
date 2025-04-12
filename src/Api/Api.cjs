@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
  
 const app = express() 
 
